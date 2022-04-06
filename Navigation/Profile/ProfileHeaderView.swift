@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
+    
     var avatarImageView: UIImageView = {
             let image = UIImageView()
             image.translatesAutoresizingMaskIntoConstraints = false
@@ -72,68 +73,59 @@ class ProfileHeaderView: UIView {
             
         }()
         
-        var BottomButton: UIButton = {
-            let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.backgroundColor = .systemBlue
-            button.setTitle("New post", for: .normal)
-            button.setTitleColor(.lightGray, for: .highlighted)
-            return button
-        }()
+//        var BottomButton: UIButton = {
+//            let button = UIButton()
+//            button.translatesAutoresizingMaskIntoConstraints = false
+//            button.backgroundColor = .systemBlue
+//            button.setTitle("New post", for: .normal)
+//            button.setTitleColor(.lightGray, for: .highlighted)
+//            return button
+//        }()
         
         func setupConstrains() {
 
             self.translatesAutoresizingMaskIntoConstraints = false
-            guard let View = superview  else { return }
-
             NSLayoutConstraint.activate([
 
-                self.leftAnchor.constraint(equalTo: View.safeAreaLayoutGuide.leftAnchor),
-                self.rightAnchor.constraint(equalTo: View.safeAreaLayoutGuide.rightAnchor),
-                self.topAnchor.constraint(equalTo: View.safeAreaLayoutGuide.topAnchor),
-                self.heightAnchor.constraint(equalToConstant: 220),
+                self.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
+                self.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
+                self.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+                contentView.heightAnchor.constraint(equalToConstant: 220),
 
 
-                avatarImageView.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 16),
-                avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+                avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
+                avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
                 avatarImageView.widthAnchor.constraint(equalToConstant: 100),
                 avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
                 
-                setStatusButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-                setStatusButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+                setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+                setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
                 setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 42),
                 setStatusButton.heightAnchor.constraint(equalToConstant: 50),
                 
      
-                statusLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 20),
+                statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
                 statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -60),
 
-                fullNameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 20),
+                fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
                 fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
 
-                statusTextField.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 15),
+                statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
                 statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -10),
-                statusTextField.rightAnchor.constraint(greaterThanOrEqualTo: self.rightAnchor, constant: -16),
+                statusTextField.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor, constant: -16),
                 statusTextField.heightAnchor.constraint(equalToConstant: 40),
-                
-                BottomButton.leftAnchor.constraint(equalTo: View.leftAnchor),
-                BottomButton.rightAnchor.constraint(equalTo: View.rightAnchor),
-                BottomButton.heightAnchor.constraint(equalToConstant: 40),
-                BottomButton.bottomAnchor.constraint(equalTo: View.safeAreaLayoutGuide.bottomAnchor)
-            ])
 
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
+            ])
         }
-        
-        func addView() {
-            self.addSubview(avatarImageView)
-            self.addSubview(fullNameLabel)
-            self.addSubview(statusTextField)
-            self.addSubview(statusLabel)
-            self.addSubview(setStatusButton)
-            self.addSubview(BottomButton)
-            self.setupConstrains()
+    
+        func addViews() {
+            contentView.addSubview(avatarImageView)
+            contentView.addSubview(fullNameLabel)
+            contentView.addSubview(statusTextField)
+            contentView.addSubview(statusLabel)
+            contentView.addSubview(setStatusButton)
+//            contentView.addSubview(BottomButton)
+            setupConstrains()
         }
         
         @objc func pressButton() {
@@ -141,7 +133,17 @@ class ProfileHeaderView: UIView {
             print(statusLabel.text!)
         }
     }
+    
+    override init(reuseIdentifier: String?) {
+             super.init(reuseIdentifier: reuseIdentifier)
+             addViews()
+        }
+
+         required init?(coder: NSCoder) {
+             fatalError("init(coder:) has not been implemented")
+    }
 }
+
 
 
 
