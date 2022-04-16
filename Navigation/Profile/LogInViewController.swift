@@ -14,12 +14,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(VkLogo)
-        contentView.addSubview(loginButton)
-        contentView.addSubview(logStackView)
-        logStackView.addArrangedSubview(username)
-        logStackView.addArrangedSubview(password)
+        addSubviews()
         setupConstrains()
         username.delegate = self
         password.delegate = self
@@ -179,5 +174,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @objc private func tapButton() {
         let profileVC = ProfileViewController()
         navigationController?.setViewControllers([profileVC], animated: true)
+    }
+    
+    func addSubviews() {
+        scrollView.addSubview(contentView)
+        contentView.addSubview(VkLogo)
+        contentView.addSubview(loginButton)
+        contentView.addSubview(logStackView)
+        logStackView.addArrangedSubview(username)
+        logStackView.addArrangedSubview(password)
     }
 }

@@ -14,6 +14,8 @@
 		1280F89A27E3888700AB7B83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1280F89927E3888700AB7B83 /* AppDelegate.swift */; };
 		1280F89E27E3888700AB7B83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1280F89D27E3888700AB7B83 /* ViewController.swift */; };
 		1280F8A327E3888900AB7B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1280F8A227E3888900AB7B83 /* Assets.xcassets */; };
+		12A70F3727F8EE810074C8A0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A70F3627F8EE810074C8A0 /* Post.swift */; };
+		12A70F3927FDF4B90074C8A0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		1280F89D27E3888700AB7B83 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1280F8A227E3888900AB7B83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1280F8A727E3888900AB7B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12A70F3627F8EE810074C8A0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,9 +46,11 @@
 		1223938A27E66C720083A5BC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				1223938627E66C3C0083A5BC /* ProfileViewController.swift */,
-				1223938827E66C650083A5BC /* ProfileHeaderView.swift */,
 				1223938B27E680960083A5BC /* LogInViewController.swift */,
+				1223938627E66C3C0083A5BC /* ProfileViewController.swift */,
+				12A70F3627F8EE810074C8A0 /* Post.swift */,
+				1223938827E66C650083A5BC /* ProfileHeaderView.swift */,
+				12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -150,8 +156,10 @@
 				1280F89E27E3888700AB7B83 /* ViewController.swift in Sources */,
 				1280F89A27E3888700AB7B83 /* AppDelegate.swift in Sources */,
 				1223938C27E680960083A5BC /* LogInViewController.swift in Sources */,
+				12A70F3927FDF4B90074C8A0 /* PostTableViewCell.swift in Sources */,
 				1223938927E66C650083A5BC /* ProfileHeaderView.swift in Sources */,
 				1223938727E66C3C0083A5BC /* ProfileViewController.swift in Sources */,
+				12A70F3727F8EE810074C8A0 /* Post.swift in Sources */,
 				1223938527E66BD00083A5BC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
