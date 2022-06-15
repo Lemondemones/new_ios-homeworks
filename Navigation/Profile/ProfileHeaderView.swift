@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
     var avatarImageView: UIImageView = {
             let image = UIImageView()
-            image.translatesAutoresizingMaskIntoConstraints = false
             image.clipsToBounds = true
             image.image = UIImage(named: "Avatar")
             image.layer.borderWidth = 3
@@ -22,7 +22,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var fullNameLabel: UILabel = {
             let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
             label.text  = "Minus"
             label.textColor = .black
             label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -33,7 +32,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var statusLabel: UILabel = {
             let statLabel = UILabel()
-            statLabel.translatesAutoresizingMaskIntoConstraints = false
             statLabel.text = "Waiting for something"
             statLabel.textColor = .gray
             statLabel.font = UIFont.systemFont(ofSize: 15,weight: .regular)
@@ -43,7 +41,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var statusTextField: UITextField = {
             let statusTextField = UITextField()
-            statusTextField.translatesAutoresizingMaskIntoConstraints = false
             statusTextField.layer.borderWidth = 1
             statusTextField.layer.borderColor = UIColor.black.cgColor
             statusTextField.layer.cornerRadius = 12
@@ -59,7 +56,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         
         var setStatusButton: UIButton = {
             let button = UIButton()
-            button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = .systemBlue
             button.layer.cornerRadius = 4
             button.layer.shadowColor = UIColor.black.cgColor
@@ -73,49 +69,46 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             
         }()
         
-//        var BottomButton: UIButton = {
-//            let button = UIButton()
-//            button.translatesAutoresizingMaskIntoConstraints = false
-//            button.backgroundColor = .systemBlue
-//            button.setTitle("New post", for: .normal)
-//            button.setTitleColor(.lightGray, for: .highlighted)
-//            return button
-//        }()
+        var BottomButton: UIButton = {
+            let button = UIButton()
+            button.backgroundColor = .systemBlue
+            button.setTitle("New post", for: .normal)
+            button.setTitleColor(.lightGray, for: .highlighted)
+            return button
+        }()
+    
         
-        func setupConstrains() {
+        func setupLayout() {
+        
+            self.avatarImageView.snp.makeConstraints { (make) in
+                make.topMargin.equalTo(20)
+                make.leftMargin.equalTo(16)
+                make.width.height.equalTo(100)
+            }
 
-            self.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
+            setStatusButton.snp.makeConstraints { (make) in
+                make.topMargin.equalTo(avatarImageView.snp.bottom).offset(42)
+                make.height.equalTo(50)
+                make.leftMargin.equalTo(self.snp.left).offset(16)
+                make.rightMargin.equalTo(self.snp.right).offset(-16)
+            }
 
-                self.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor),
-                self.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor),
-                self.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-                contentView.heightAnchor.constraint(equalToConstant: 220),
+            statusLabel.snp.makeConstraints { (make) in
+                make.leftMargin.equalTo(avatarImageView.snp.right).offset(20)
+                make.topMargin.equalTo(avatarImageView.snp.bottom).offset(-60)
+            }
 
+            fullNameLabel.snp.makeConstraints { (make) in
+                make.left.equalTo(avatarImageView.snp.right).offset(20)
+                make.top.equalTo(self.snp.top).offset(30)
+            }
 
-                avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
-                avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-                avatarImageView.widthAnchor.constraint(equalToConstant: 100),
-                avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
-                
-                setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-                setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-                setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 42),
-                setStatusButton.heightAnchor.constraint(equalToConstant: 50),
-                
-     
-                statusLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-                statusLabel.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -60),
-
-                fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
-                fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
-
-                statusTextField.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 15),
-                statusTextField.bottomAnchor.constraint(equalTo: setStatusButton.topAnchor, constant: -10),
-                statusTextField.trailingAnchor.constraint(greaterThanOrEqualTo: self.trailingAnchor, constant: -16),
-                statusTextField.heightAnchor.constraint(equalToConstant: 40),
-
-            ])
+            statusTextField.snp.makeConstraints { (make) in
+                make.leftMargin.equalTo(avatarImageView.snp.right).offset(15)
+                make.rightMargin.greaterThanOrEqualTo(self.snp.right).offset(-16)
+                make.bottomMargin.equalTo(setStatusButton.snp.top).offset(-10)
+                make.height.equalTo(40)
+            }
         }
     
         func addViews() {
@@ -124,8 +117,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             contentView.addSubview(statusTextField)
             contentView.addSubview(statusLabel)
             contentView.addSubview(setStatusButton)
-//            contentView.addSubview(BottomButton)
-            setupConstrains()
+            self.setupLayout()
         }
         
         @objc func pressButton() {

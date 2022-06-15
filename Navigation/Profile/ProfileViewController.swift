@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class ProfileViewController: UIViewController {
     func configurateTableView() {
         self.view.addSubview(profileTableView)
         setTableViewDelegate()
-        setupConstrains()
+        setupLayout()
     }
     
     func setTableViewDelegate() {
@@ -29,19 +30,19 @@ class ProfileViewController: UIViewController {
     
     var profileTableView: UITableView = {
         var tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell_identifier" )
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView_indentifier")
         return tableView
     }()
 
-    func setupConstrains() {
-        NSLayoutConstraint.activate([
-            profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            profileTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-         ])
+    func setupLayout() {
+        
+        profileTableView.snp.makeConstraints { (make) in
+            make.bottom.equalTo(view.snp.bottomMargin)
+            make.top.equalTo(view.snp.topMargin)
+            make.trailing.equalTo(view.snp.trailing)
+            make.leading.equalTo(view.snp.leading)
+        }
     }
 }
     extension ProfileViewController: UITableViewDataSource, UITableViewDelegate  {

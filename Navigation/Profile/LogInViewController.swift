@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
@@ -25,13 +26,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private var contentView: UIView = {
         let contentView = UIView()
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
     
     private var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
@@ -39,13 +38,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private var VkLogo: UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(named: "VkLogo")
-        logo.translatesAutoresizingMaskIntoConstraints = false
         return logo
     }()
     
     private var username: UITextField = {
         let username = UITextField()
-        username.translatesAutoresizingMaskIntoConstraints = false
         username.placeholder = "Email or phone"
         username.textColor = .black
         username.layer.borderColor = UIColor.lightGray.cgColor
@@ -60,7 +57,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private var password: UITextField = {
         let password = UITextField()
-        password.translatesAutoresizingMaskIntoConstraints = false
         password.placeholder = "Password"
         password.textColor = .black
         password.layer.borderColor = UIColor.lightGray.cgColor
@@ -77,7 +73,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private var loginButton: UIButton = {
         let loginButton = UIButton()
         loginButton.backgroundColor = .init(red: 0.28, green: 0.52, blue: 0.8, alpha: 1.00)
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.setTitle("Log in", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
         loginButton.layer.cornerRadius = 10
@@ -88,7 +83,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private var logStackView: UIStackView = {
         let logStackView = UIStackView()
-        logStackView.translatesAutoresizingMaskIntoConstraints = false
         logStackView.axis = .vertical
         logStackView.backgroundColor = .systemGray6
         logStackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -100,36 +94,44 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }()
 
     func setupConstrains() {
-        NSLayoutConstraint.activate([
-            
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-            
-            VkLogo.widthAnchor.constraint(equalToConstant: 100),
-            VkLogo.heightAnchor.constraint(equalToConstant: 100),
-            VkLogo.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
-            VkLogo.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            
-            logStackView.topAnchor.constraint(equalTo: VkLogo.bottomAnchor, constant: 120),
-            logStackView.heightAnchor.constraint(equalToConstant: 100),
-            logStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            logStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            
-            
-            loginButton.topAnchor.constraint(equalTo: logStackView.bottomAnchor, constant: 16),
-            loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            loginButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
+        
+        
+        
+        scrollView.snp.makeConstraints{ (make) in
+            make.leading.equalTo(view.snp.leadingMargin)
+            make.top.equalTo(view.snp.topMargin)
+            make.trailing.equalTo(view.snp.trailingMargin)
+            make.bottom.equalTo(view.snp.bottomMargin)
+        }
+        
+        contentView.snp.makeConstraints{ (make) in
+            make.top.equalTo(scrollView.snp.top)
+            make.bottom.equalTo(scrollView.snp.bottom)
+            make.leading.equalTo(scrollView.snp.leading)
+            make.trailing.equalTo(scrollView.snp.trailing)
+            make.centerX.equalTo(scrollView.snp.centerX)
+            make.centerY.equalTo(scrollView.snp.centerY)
+        }
+        
+        VkLogo.snp.makeConstraints{ (make) in
+            make.width.height.equalTo(100)
+            make.top.equalTo(contentView.snp.top).offset(120)
+            make.centerX.equalTo(contentView.snp.centerX)
+        }
+        
+        logStackView.snp.makeConstraints{ (make) in
+            make.top.equalTo(VkLogo.snp.bottom).offset(120)
+            make.height.equalTo(100)
+            make.leading.equalTo(contentView.snp.leading).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-16)
+        }
+        
+        loginButton.snp.makeConstraints{ (make) in
+            make.top.equalTo(logStackView.snp.bottom).offset(16)
+            make.leading.equalTo(contentView.snp.leading).offset(16)
+            make.trailing.equalTo(contentView.snp.trailing).offset(-16)
+            make.height.equalTo(50)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
