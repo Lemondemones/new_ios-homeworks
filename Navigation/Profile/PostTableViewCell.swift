@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -55,7 +56,7 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContent()
-        setupConstrains()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -70,14 +71,35 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(postImage)
     }
     func configuratePostTableViewCell(title: String, like: Int, views: Int, description: String, image: String) {
+        
         self.postImage.image = UIImage(named: image)
         self.postLike.text = "Likes: \(like)"
         self.postViews.text = "Views: \(views)"
         self.postDescription.text = description
         self.postAuthor.text = title
+        
+        let random = Int.random(in: 1...4)
+        let filter: ColorFilter?
+
+        switch random {
+        case 1: filter = .tonal
+        case 2: filter = .fade
+        case 3: filter = .chrome
+        case 4: filter = .noir
+        default:
+                filter = nil
+        }
+
+        let iProcessor = ImageProcessor()
+        guard let filter = filter else { return }
+        guard let image = postImage.image else { return }
+
+        iProcessor.processImage(sourceImage: image, filter: filter) { filterImage in
+            postImage.image = filterImage
+        }
     }
     
-    func setupConstrains() {
+    func setupLayout() {
         NSLayoutConstraint.activate([
             
             contentView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
@@ -104,5 +126,4 @@ class PostTableViewCell: UITableViewCell {
             
         ])
     }
-    
 }
