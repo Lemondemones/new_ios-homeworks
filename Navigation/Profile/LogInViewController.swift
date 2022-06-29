@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
+    var isUsername: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
@@ -172,8 +174,42 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
 
     @objc private func tapButton() {
-        let profileVC = ProfileViewController()
-        navigationController?.setViewControllers([profileVC], animated: true)
+        
+        #if DEBUG
+
+        let currentUserService = TestUserService()
+        let profileVC = ProfileViewController(userService: currentUserService, userInfo: username.text!)
+        profileVC.userService = currentUserService
+        if username.text == currentUserService.userInfo.userFullName {
+            isUsername = true
+            navigationController?.pushViewController(profileVC, animated: false)
+            
+        } else {
+            let alert = UIAlertController(title: "DEBUG Alert", message: "Пользователь не зарегестрирован", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        #else
+        
+        let currentUserService = CurrentUserService()
+        let profileVC = ProfileViewController(userService: currentUserService, userInfo: username.text!)
+        profileVC.userService = currentUserService
+        if username.text == currentUserService.userInfo.userFullName {
+            isUsername = true
+            navigationController?.pushViewController(profileVC, animated: false)
+        } else {
+            let alert = UIAlertController(title: "RELEASE Alert", message: "Пользователь не зарегестрирован", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        #endif
+        
+        if isUsername {
+            navigationController?.setViewControllers([profileVC], animated: true)
+        }
+        
     }
     
     func addSubviews() {
