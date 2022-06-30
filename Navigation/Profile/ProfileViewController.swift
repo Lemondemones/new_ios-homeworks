@@ -26,7 +26,6 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
         self.view.backgroundColor = .white
         #else
         self.view.backgroundColor = .systemBlue

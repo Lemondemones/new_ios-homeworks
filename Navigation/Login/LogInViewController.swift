@@ -9,7 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
-    var isUsername: Bool = false
+    var delegate: LoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,12 +142,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
         return true
      }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         nc.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         let nc = NotificationCenter.default
@@ -175,43 +177,34 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @objc private func tapButton() {
         
-        #if DEBUG
-
-        let currentUserService = TestUserService()
-        let profileVC = ProfileViewController(userService: currentUserService, userInfo: username.text!)
-        profileVC.userService = currentUserService
-        if username.text == currentUserService.userInfo.userFullName {
-            isUsername = true
-            navigationController?.pushViewController(profileVC, animated: false)
-            
-        } else {
-            let alert = UIAlertController(title: "DEBUG Alert", message: "Пользователь не зарегестрирован", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        let rule = delegate?.check(login: username.text, pswd: password.text)
         
-        #else
-        
-        let currentUserService = CurrentUserService()
-        let profileVC = ProfileViewController(userService: currentUserService, userInfo: username.text!)
-        profileVC.userService = currentUserService
-        if username.text == currentUserService.userInfo.userFullName {
-            isUsername = true
+        if rule {
+            let profileVC = ProfileViewController()
             navigationController?.pushViewController(profileVC, animated: false)
         } else {
-            let alert = UIAlertController(title: "RELEASE Alert", message: "Пользователь не зарегестрирован", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Unknown login", message: "Please, enter correct user login", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true)
         }
-        
-        #endif
-        
-        if isUsername {
-            navigationController?.setViewControllers([profileVC], animated: true)
-        }
-        
+//#if DEBUG
+//        let service = TestUserService()
+//        let rule = delegate?.check(login: username.text, pswd: password.text)
+//#else
+//        let service = CurrentUserService()
+//        let rule = delegate?.check(login: username.text, pswd: password.text)
+//#endif
+//        // Check user login
+//        if let user = service.getUser(login: loginField.text ?? "") {
+//            let profileVC = ProfileViewController(user: user)
+//            navigationController?.setViewControllers([profileVC], animated: true)
+//        } else {
+//            let alert = UIAlertController(title: "Unknown login", message: "Please, enter correct user login", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//            self.present(alert, animated: true)
+//        }
     }
-    
+
     func addSubviews() {
         scrollView.addSubview(contentView)
         contentView.addSubview(VkLogo)
