@@ -177,7 +177,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @objc private func tapButton() {
         
-        let rule = delegate?.check(login: username.text, pswd: password.text)
+        guard let pswd = password.text else {return}
+        guard let login = username.text else {return}
+        guard let delegate = delegate else {return}
+
+        let rule = delegate.check(login: login, pswd: pswd)
         
         if rule {
             let profileVC = ProfileViewController()
@@ -187,6 +191,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self.present(alert, animated: true)
         }
+        
 //#if DEBUG
 //        let service = TestUserService()
 //        let rule = delegate?.check(login: username.text, pswd: password.text)

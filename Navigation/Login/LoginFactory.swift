@@ -8,5 +8,5 @@
 import UIKit
 
 protocol LoginFactory {
-    func logInspector() -> LoginInspector()
+    func logInspector() -> LoginInspector
 }
