@@ -20,6 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let feedVC = ViewController()
         let loginVC = LogInViewController()
         
+        let factory = MyLoginFactory()
+        let logInspector = factory.logInspector()
+        loginVC.delegate = logInspector
+        
         let profileNavController = UINavigationController(rootViewController: loginVC)
         let feedNavVC = UINavigationController(rootViewController: feedVC)
         

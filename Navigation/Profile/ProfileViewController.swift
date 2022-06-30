@@ -10,27 +10,22 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    var userService: UserService
-    var userInfo: String?
-    
-    init(userService: UserService, userInfo: String?) {
-        self.userService = userService
-        self.userInfo = userInfo
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+//    var userService: UserService
+//    var userInfo: String?
+//
+//    init(userService: UserService, userInfo: String?) {
+//        self.userService = userService
+//        self.userInfo = userInfo
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        #if DEBUG
         self.view.backgroundColor = .white
-        #else
-        self.view.backgroundColor = .systemBlue
-        #endif
         configurateTableView()
     }
     
@@ -81,11 +76,11 @@ class ProfileViewController: UIViewController {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ProfileHeaderView_indentifier") as! ProfileHeaderView
         
-        let currentUserService = userService.getUser(userName: userInfo!)
-        headerView.fullNameLabel.text = currentUserService?.userFullName
-        headerView.avatarImageView.image = currentUserService?.userAvatar
-        headerView.statusLabel.text = currentUserService?.userStatus
-        return headerView
-    }
+//        let currentUserService = userService.getUser(userName: userInfo!)
+//        headerView.fullNameLabel.text = currentUserService?.userFullName
+//        headerView.avatarImageView.image = currentUserService?.userAvatar
+//        headerView.statusLabel.text = currentUserService?.userStatus
         
+       return headerView
+    }
 }

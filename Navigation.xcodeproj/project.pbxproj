@@ -16,6 +16,11 @@
 		1280F89E27E3888700AB7B83 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1280F89D27E3888700AB7B83 /* ViewController.swift */; };
 		1280F8A327E3888900AB7B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1280F8A227E3888900AB7B83 /* Assets.xcassets */; };
 		12A70F3927FDF4B90074C8A0 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */; };
+		12CA40A8286E421700213804 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA40A7286E421700213804 /* Checker.swift */; };
+		12CA40AB286E44A100213804 /* LoginViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA40AA286E44A100213804 /* LoginViewControllerDelegate.swift */; };
+		12CA40AD286E454E00213804 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA40AC286E454E00213804 /* LoginInspector.swift */; };
+		12CA40B1286E4FE300213804 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA40B0286E4FE300213804 /* LoginFactory.swift */; };
+		12CA40B3286E507A00213804 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CA40B2286E507A00213804 /* MyLoginFactory.swift */; };
 		12CEE38C2828293A00FB6A44 /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 12CEE38B2828293A00FB6A44 /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		12CEE38F2828293A00FB6A44 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12CEE3892828293A00FB6A44 /* StorageService.framework */; };
 		12CEE3902828293A00FB6A44 /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12CEE3892828293A00FB6A44 /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,6 +69,11 @@
 		1280F8A727E3888900AB7B83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12A70F3627F8EE810074C8A0 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		12CA40A7286E421700213804 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		12CA40AA286E44A100213804 /* LoginViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerDelegate.swift; sourceTree = "<group>"; };
+		12CA40AC286E454E00213804 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		12CA40B0286E4FE300213804 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		12CA40B2286E507A00213804 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		12CEE3892828293A00FB6A44 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		12CEE38B2828293A00FB6A44 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		12DB85D2286A3CA00006B7FA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -103,7 +113,6 @@
 		1223938A27E66C720083A5BC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				1223938B27E680960083A5BC /* LogInViewController.swift */,
 				1223938627E66C3C0083A5BC /* ProfileViewController.swift */,
 				1223938827E66C650083A5BC /* ProfileHeaderView.swift */,
 				12A70F3827FDF4B80074C8A0 /* PostTableViewCell.swift */,
@@ -139,10 +148,24 @@
 				1280F89D27E3888700AB7B83 /* ViewController.swift */,
 				1280F8A227E3888900AB7B83 /* Assets.xcassets */,
 				1280F8A727E3888900AB7B83 /* Info.plist */,
+				12CA40A9286E422200213804 /* Login */,
 				1223938A27E66C720083A5BC /* Profile */,
 				12DB85D6286A3DDB0006B7FA /* UserInfo */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		12CA40A9286E422200213804 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				1223938B27E680960083A5BC /* LogInViewController.swift */,
+				12CA40A7286E421700213804 /* Checker.swift */,
+				12CA40AA286E44A100213804 /* LoginViewControllerDelegate.swift */,
+				12CA40AC286E454E00213804 /* LoginInspector.swift */,
+				12CA40B0286E4FE300213804 /* LoginFactory.swift */,
+				12CA40B2286E507A00213804 /* MyLoginFactory.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		12CEE38A2828293A00FB6A44 /* StorageService */ = {
@@ -370,16 +393,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				12DB85D8286A3EF20006B7FA /* CurrentUserService.swift in Sources */,
+				12CA40A8286E421700213804 /* Checker.swift in Sources */,
 				1280F89E27E3888700AB7B83 /* ViewController.swift in Sources */,
 				12DB85DA286A44350006B7FA /* TestUserService.swift in Sources */,
 				1280F89A27E3888700AB7B83 /* AppDelegate.swift in Sources */,
 				12DB85D5286A3DD30006B7FA /* UserService.swift in Sources */,
+				12CA40B3286E507A00213804 /* MyLoginFactory.swift in Sources */,
 				1223938C27E680960083A5BC /* LogInViewController.swift in Sources */,
+				12CA40AD286E454E00213804 /* LoginInspector.swift in Sources */,
 				12A70F3927FDF4B90074C8A0 /* PostTableViewCell.swift in Sources */,
+				12CA40AB286E44A100213804 /* LoginViewControllerDelegate.swift in Sources */,
 				12DB85D3286A3CA00006B7FA /* User.swift in Sources */,
 				1223938927E66C650083A5BC /* ProfileHeaderView.swift in Sources */,
 				1223938727E66C3C0083A5BC /* ProfileViewController.swift in Sources */,
 				1223938527E66BD00083A5BC /* SceneDelegate.swift in Sources */,
+				12CA40B1286E4FE300213804 /* LoginFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
