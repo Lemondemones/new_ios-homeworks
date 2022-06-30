@@ -17,7 +17,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let tabBarController = UITabBarController()
         
-        let profileVC = ProfileViewController()
         let feedVC = ViewController()
         let loginVC = LogInViewController()
         
