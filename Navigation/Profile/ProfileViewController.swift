@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
     func configurateTableView() {
         self.view.addSubview(profileTableView)
         setTableViewDelegate()
-        setupConstrains()
+        setupLayout()
     }
     
     func setTableViewDelegate() {
@@ -50,10 +50,11 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "PostTableViewCell_identifier" )
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: "ProfileHeaderView_indentifier")
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: "PhotosTableViewCell")
         return tableView
     }()
 
-    func setupConstrains() {
+    func setupLayout() {
         NSLayoutConstraint.activate([
             profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -69,6 +70,8 @@ class ProfileViewController: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 1 {
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "PostTableViewCell_identifier" , for: indexPath) as! PostTableViewCell
         cell.configuratePostTableViewCell(title: posts_array[indexPath.row].author,
                                           like: posts_array[indexPath.row].likes,
@@ -76,6 +79,12 @@ class ProfileViewController: UIViewController {
                                           description: posts_array[indexPath.row].description,
                                           image: posts_array[indexPath.row].image)
         return cell
+        }else {
+            let cell = profileTableView.dequeueReusableCell(withIdentifier: "PhotosTableViewCell", for: indexPath) as! PhotosTableViewCell
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(arrowButtonAction))
+            PhotosTableViewCell.arrowButton.addGestureRecognizer(gesture)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -88,4 +97,9 @@ class ProfileViewController: UIViewController {
         return headerView
     }
         
+    @objc private func arrowButtonAction() {
+        let photoVC = PhotosViewController()
+        self.navigationController?.pushViewController(photoVC, animated: true)
+    }
 }
+

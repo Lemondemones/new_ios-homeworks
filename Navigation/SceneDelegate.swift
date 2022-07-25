@@ -27,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         feedNavVC.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"), tag: 1)
         tabBarController.setViewControllers([profileNavController,feedNavVC], animated: true)
         
+        addPhotosArray()
         self.window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
