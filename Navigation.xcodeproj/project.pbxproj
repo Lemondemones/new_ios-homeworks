@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		121CD7B72874C2470004C449 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CD7B62874C2470004C449 /* PhotosViewController.swift */; };
+		121CD7BA2874C7300004C449 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CD7B92874C7300004C449 /* PhotoCollectionViewCell.swift */; };
+		121CD7BC2874D2990004C449 /* PhotosArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CD7BB2874D2990004C449 /* PhotosArray.swift */; };
+		121CD7BE2874D8CA0004C449 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 121CD7BD2874D8CA0004C449 /* PhotosTableViewCell.swift */; };
 		1223938527E66BD00083A5BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1223938427E66BD00083A5BC /* SceneDelegate.swift */; };
 		1223938727E66C3C0083A5BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1223938627E66C3C0083A5BC /* ProfileViewController.swift */; };
 		1223938927E66C650083A5BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1223938827E66C650083A5BC /* ProfileHeaderView.swift */; };
@@ -53,6 +57,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		121CD7B62874C2470004C449 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		121CD7B92874C7300004C449 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		121CD7BB2874D2990004C449 /* PhotosArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosArray.swift; sourceTree = "<group>"; };
+		121CD7BD2874D8CA0004C449 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		1223938427E66BD00083A5BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1223938627E66C3C0083A5BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1223938827E66C650083A5BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -100,6 +108,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		121CD7B82874C24B0004C449 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				121CD7B62874C2470004C449 /* PhotosViewController.swift */,
+				121CD7B92874C7300004C449 /* PhotoCollectionViewCell.swift */,
+				121CD7BB2874D2990004C449 /* PhotosArray.swift */,
+				121CD7BD2874D8CA0004C449 /* PhotosTableViewCell.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		1223938A27E66C720083A5BC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +160,7 @@
 				1280F8A727E3888900AB7B83 /* Info.plist */,
 				1223938A27E66C720083A5BC /* Profile */,
 				12DB85D6286A3DDB0006B7FA /* UserInfo */,
+				121CD7B82874C24B0004C449 /* Photo */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -369,16 +389,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				121CD7BE2874D8CA0004C449 /* PhotosTableViewCell.swift in Sources */,
 				12DB85D8286A3EF20006B7FA /* CurrentUserService.swift in Sources */,
+				121CD7BA2874C7300004C449 /* PhotoCollectionViewCell.swift in Sources */,
 				1280F89E27E3888700AB7B83 /* ViewController.swift in Sources */,
 				12DB85DA286A44350006B7FA /* TestUserService.swift in Sources */,
 				1280F89A27E3888700AB7B83 /* AppDelegate.swift in Sources */,
 				12DB85D5286A3DD30006B7FA /* UserService.swift in Sources */,
 				1223938C27E680960083A5BC /* LogInViewController.swift in Sources */,
 				12A70F3927FDF4B90074C8A0 /* PostTableViewCell.swift in Sources */,
+				121CD7BC2874D2990004C449 /* PhotosArray.swift in Sources */,
 				12DB85D3286A3CA00006B7FA /* User.swift in Sources */,
 				1223938927E66C650083A5BC /* ProfileHeaderView.swift in Sources */,
 				1223938727E66C3C0083A5BC /* ProfileViewController.swift in Sources */,
+				121CD7B72874C2470004C449 /* PhotosViewController.swift in Sources */,
 				1223938527E66BD00083A5BC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,8 +699,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				branch = imagepublisher;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

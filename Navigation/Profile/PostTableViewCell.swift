@@ -57,6 +57,7 @@ class PostTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addContent()
         setupLayout()
+        self.selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
